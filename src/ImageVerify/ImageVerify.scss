@@ -1,0 +1,43 @@
+$prefix: 'image-slider';
+$primary: #f7ca0c;
+
+.#{$prefix} {
+  display: inline-block;
+}
+
+.#{$prefix}-content {
+  position: relative;
+}
+
+.#{$prefix}-background-image {
+  width: 100%;
+  height: 100%;
+}
+
+.#{$prefix}-slider-image {
+  position: absolute;
+}
+
+.#{$prefix}-line {
+  position: relative;
+  height: 24px;
+  background-color: rgba($primary, 0.7);
+  margin-top: 10px;
+  border-radius: 9999px;
+}
+
+.#{$prefix}-slider-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 28px;
+  width: 22px;
+  background-color: $primary;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}

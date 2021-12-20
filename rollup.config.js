@@ -1,10 +1,10 @@
 const typescript = require('rollup-plugin-typescript2')
 const { terser } = require('rollup-plugin-terser')
-const { babel } = require('@rollup/plugin-babel')
 const commonjs = require('@rollup/plugin-commonjs')
 // const postcss = require('rollup-plugin-postcss')
 const styles = require('rollup-plugin-styles')
 const path = require('path')
+const sass = require('rollup-plugin-sass')
 
 const config = {
   input: path.resolve(__dirname, './src/index.tsx'),
@@ -22,12 +22,12 @@ const config = {
     },
   ],
   plugins: [
+    sass(),
     styles({
       mode: 'extract',
     }),
     // postcss(),
     commonjs(),
-    babel({ babelHelpers: 'bundled' }),
     typescript(),
     terser(),
   ],

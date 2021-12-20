@@ -1,5 +1,10 @@
 module.exports = {
-  extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
+  extends: [
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'airbnb',
+    'prettier',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: { jsx: true },
@@ -15,5 +20,17 @@ module.exports = {
       { namedComponents: 'function-declaration' },
     ],
     'import/no-extraneous-dependencies': 0,
+    'import/extensions': [
+      'error',
+      { ts: 'ignorePackages', tsx: 'ignorePackages' },
+    ],
+    'import/no-unresolved': 0,
+    'import/prefer-default-export': ['warn'],
+    'react/jsx-props-no-spreading': 0,
+    'jsx-a11y/no-static-element-interactions': 0,
+  },
+  env: {
+    browser: true,
+    node: true,
   },
 }
