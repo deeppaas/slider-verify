@@ -31,7 +31,7 @@ const config = {
     typescript(),
     terser(),
   ],
-  external: ['react'],
+  external: ['react', 'classnames'],
 }
 
 module.exports = config

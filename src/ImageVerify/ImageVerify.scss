@@ -1,5 +1,6 @@
+@import '../styles/variable';
+
 $prefix: 'image-slider';
-$primary: #f7ca0c;
 
 .#{$prefix} {
   display: inline-block;
@@ -7,6 +8,7 @@ $primary: #f7ca0c;
 
 .#{$prefix}-content {
   position: relative;
+  overflow: hidden;
 }
 
 .#{$prefix}-background-image {
@@ -16,6 +18,30 @@ $primary: #f7ca0c;
 
 .#{$prefix}-slider-image {
   position: absolute;
+}
+
+.#{$prefix}-result-message {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  padding: 4px 15px;
+  transform: translateY(100%);
+
+  &.success {
+    background-color: rgba($success, 0.9);
+  }
+
+  &.error {
+    background-color: rgba($danger, 0.9);
+  }
+
+  &.move {
+    animation: move 2.5s linear;
+  }
 }
 
 .#{$prefix}-refresh-btn {
@@ -60,5 +86,23 @@ $primary: #f7ca0c;
 
   &:disabled {
     cursor: not-allowed;
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: translateY(100%);
+  }
+
+  15% {
+    transform: translateY(0);
+  }
+
+  85% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(100%);
   }
 }

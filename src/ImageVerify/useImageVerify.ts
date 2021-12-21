@@ -38,14 +38,16 @@ function useImageVerify({
     }
   }, [backgroundImage, ratio, width])
 
+  const reset = React.useCallback(() => {
+    setVerify(INIT_VERIFY)
+    setSliderLeft(0)
+  }, [])
+
   React.useEffect(() => {
     if (backgroundImage) {
-      setVerify(INIT_VERIFY)
-      setSliderLeft(0)
-      // 重置top，保留width/heigth
-      setSliderStyle(p => ({ ...p, top: 0 }))
+      reset()
     }
-  }, [backgroundImage])
+  }, [backgroundImage, reset])
 
   React.useEffect(() => {
     if (ratio && sliderImage) {
@@ -71,12 +73,6 @@ function useImageVerify({
       setVerify({ type: 'verifying', result: undefined, message: undefined })
       onMoveEnd({ left: moveLeft, ratio }, ({ result, message }) => {
         setVerify({ type: 'end', result, message })
-        if (result === 'error') {
-          onRefresh()
-        } else {
-          setVerify(INIT_VERIFY)
-          setSliderLeft(0)
-        }
       })
     }
   }
@@ -145,6 +141,7 @@ function useImageVerify({
     onTouchStart,
     sliderBtnLeft,
     verify,
+    reset,
   }
 }
 

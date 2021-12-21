@@ -1,4 +1,5 @@
 // lib
+import classnames from 'classnames'
 import React from 'react'
 import Icons from '../components/Icons'
 
@@ -10,6 +11,8 @@ import useImageVerify from './useImageVerify'
 
 const CLASS_PREFIX = 'image-slider'
 
+const MOVE_CLASS = 'move'
+
 export default function ImageVerify({
   width,
   height,
@@ -19,6 +22,7 @@ export default function ImageVerify({
   onMoveEnd,
   onRefresh,
 }: ImageVerifyProps) {
+  const resultMessageRef = React.useRef<HTMLDivElement>(null)
   const {
     verify,
     sliderStyle,
@@ -28,6 +32,7 @@ export default function ImageVerify({
     onMouseDown,
     onTouchStart,
     sliderBtnLeft,
+    reset,
   } = useImageVerify({
     width,
     height,
@@ -37,6 +42,33 @@ export default function ImageVerify({
     onMoveEnd,
     onRefresh,
   })
+
+  React.useEffect(() => {
+    if (verify.type === 'end') {
+      if (resultMessageRef.current) {
+        resultMessageRef.current.classList.add(
+          MOVE_CLASS,
+          verify.result === 'success' ? 'success' : 'error'
+        )
+      }
+    }
+  }, [verify.result, verify.type])
+
+  React.useEffect(() => {
+    const resultMessageDom = resultMessageRef.current
+    if (resultMessageDom) {
+      resultMessageDom.onanimationend = () => {
+        resultMessageDom.classList.remove(MOVE_CLASS, 'sccess', 'error')
+        if (verify.type === 'end') {
+          if (verify.result === 'error') {
+            onRefresh()
+          } else {
+            reset()
+          }
+        }
+      }
+    }
+  }, [onRefresh, reset, verify.result, verify.type])
 
   return (
     <div className={CLASS_PREFIX}>
@@ -63,6 +95,12 @@ export default function ImageVerify({
         >
           refresh
         </button>
+        <div
+          ref={resultMessageRef}
+          className={classnames(`${CLASS_PREFIX}-result-message`)}
+        >
+          {verify.message}
+        </div>
       </div>
       <div className={`${CLASS_PREFIX}-line`}>
         <div
