@@ -1,10 +1,11 @@
 const typescript = require('rollup-plugin-typescript2')
 const { terser } = require('rollup-plugin-terser')
 const commonjs = require('@rollup/plugin-commonjs')
-// const postcss = require('rollup-plugin-postcss')
-const styles = require('rollup-plugin-styles')
+const postcss = require('rollup-plugin-postcss')
+// const styles = require('rollup-plugin-styles')
 const path = require('path')
-const sass = require('rollup-plugin-sass')
+// const sass = require('rollup-plugin-sass')
+const autoprefixer = require('autoprefixer')
 
 const config = {
   input: path.resolve(__dirname, './src/index.tsx'),
@@ -22,11 +23,14 @@ const config = {
     },
   ],
   plugins: [
-    sass(),
-    styles({
-      mode: 'extract',
+    // sass(),
+    // styles({
+    //   mode: 'extract',
+    // }),
+    postcss({
+      // extract: true,
+      plugins: [autoprefixer],
     }),
-    // postcss(),
     commonjs(),
     typescript(),
     terser(),

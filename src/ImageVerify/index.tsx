@@ -91,7 +91,7 @@ export default function ImageVerify({
           type="button"
           className={`${CLASS_PREFIX}-refresh-btn`}
         >
-          refresh
+          {Icons.refresh()}
         </button>
         <div
           ref={resultMessageRef}

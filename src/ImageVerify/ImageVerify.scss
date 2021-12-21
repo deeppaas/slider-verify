@@ -32,11 +32,11 @@ $prefix: 'image-slider';
   transform: translateY(100%);
 
   &.#{$prefix}-result-message-success {
-    background-color: rgba($success, 0.9);
+    background-color: rgba($success, 0.75);
   }
 
   &.#{$prefix}-result-message-error {
-    background-color: rgba($danger, 0.9);
+    background-color: rgba($danger, 0.75);
   }
 
   &.#{$prefix}-result-message-move {
@@ -45,9 +45,21 @@ $prefix: 'image-slider';
 }
 
 .#{$prefix}-refresh-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 5px;
+  top: 5px;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  font-size: 12px;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 50%;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .#{$prefix}-line {
