@@ -7,8 +7,7 @@
     "dev": "vite",
     "docs": "tsc && vite build",
     "build": "rm -rf ./dist && rollup -c",
-    "after:bump": "npm run build",
-    "release": "release-it"
+    "release": "npm run build && release-it"
   },
   "repository": {
     "type": "git",
@@ -51,5 +50,8 @@
   "peerDependencies": {
     "classnames": "^2.3.1",
     "react": "^16.8.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
