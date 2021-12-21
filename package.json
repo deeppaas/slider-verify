@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "docs": "tsc && vite build",
-    "build": "rm -rf ./dist && rollup -c"
+    "build": "rm -rf ./dist && rollup -c",
+    "release": "release-it"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,7 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "prettier": "^2.5.1",
     "react-dom": "^16.14.0",
+    "release-it": "^14.11.8",
     "rollup": "^2.61.1",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-sass": "^1.2.10",
