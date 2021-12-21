@@ -24,8 +24,18 @@ interface BaseProps {
   onRefresh(): void
 }
 
+export interface ThemeKeysType {
+  'primary-color': string
+  'primary-light-color': string
+  'success-color': string
+  'error-color': string
+}
+
+export type ThemeType = 'default' | 'unset' | Partial<ThemeKeysType>
+
 export interface ImageVerifyProps extends BaseProps {
   sliderTips?: string
+  theme?: 'default' | 'unset' | Partial<ThemeKeysType>
 }
 
 export interface ImageVerifyHooksProps extends BaseProps {}

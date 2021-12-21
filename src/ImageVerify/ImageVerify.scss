@@ -1,6 +1,9 @@
-@import '../styles/variable';
-
 $prefix: 'image-slider';
+
+$primary-color: var(--slider-primary-color);
+$primary-light-color: var(--slider-primary-light-color);
+$success-color: var(--slider-success-color);
+$error-color: var(--slider-error-color);
 
 .#{$prefix} {
   display: inline-block;
@@ -32,11 +35,11 @@ $prefix: 'image-slider';
   transform: translateY(100%);
 
   &.#{$prefix}-result-message-success {
-    background-color: rgba($success, 0.75);
+    background-color: $success-color;
   }
 
   &.#{$prefix}-result-message-error {
-    background-color: rgba($danger, 0.75);
+    background-color: $error-color;
   }
 
   &.#{$prefix}-result-message-move {
@@ -89,7 +92,7 @@ $prefix: 'image-slider';
   top: 0;
   bottom: 0;
   border-radius: 9999px 0 0 9999px;
-  background-color: rgba($primary, 0.7);
+  background-color: $primary-light-color;
 }
 
 .#{$prefix}-slider-btn {
@@ -102,7 +105,7 @@ $prefix: 'image-slider';
   transform: translateY(-50%);
   height: 28px;
   width: 22px;
-  background-color: $primary;
+  background-color: $primary-color;
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;

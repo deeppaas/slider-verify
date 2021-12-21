@@ -8,6 +8,7 @@ import Icons from '../components/Icons'
 import './ImageVerify.scss'
 import { ImageVerifyProps } from './ImageVerifyType'
 import useImageVerify from './useImageVerify'
+import useTheme from './useTheme'
 
 const CLASS_PREFIX = 'image-slider'
 
@@ -22,6 +23,7 @@ export default function ImageVerify({
   onMoveEnd,
   onRefresh,
   sliderTips = '向右滑动滑块填充拼图',
+  theme = 'default',
 }: ImageVerifyProps) {
   const resultMessageRef = React.useRef<HTMLDivElement>(null)
   const {
@@ -43,6 +45,8 @@ export default function ImageVerify({
     onMoveEnd,
     onRefresh,
   })
+
+  useTheme(theme)
 
   React.useEffect(() => {
     const resultMessageDom = resultMessageRef.current
