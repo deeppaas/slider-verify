@@ -31,16 +31,16 @@ $prefix: 'image-slider';
   padding: 4px 15px;
   transform: translateY(100%);
 
-  &.success {
+  &.#{$prefix}-result-message-success {
     background-color: rgba($success, 0.9);
   }
 
-  &.error {
+  &.#{$prefix}-result-message-error {
     background-color: rgba($danger, 0.9);
   }
 
-  &.move {
-    animation: move 2.5s linear;
+  &.#{$prefix}-result-message-move {
+    animation: move 2s linear;
   }
 }
 
@@ -56,6 +56,19 @@ $prefix: 'image-slider';
   margin-top: 10px;
   border-radius: 9999px;
   background-color: rgba(0, 0, 0, 0.06);
+}
+
+.#{$prefix}-line-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .#{$prefix}-line-active {
@@ -94,11 +107,11 @@ $prefix: 'image-slider';
     transform: translateY(100%);
   }
 
-  15% {
+  10% {
     transform: translateY(0);
   }
 
-  85% {
+  90% {
     transform: translateY(0);
   }
 

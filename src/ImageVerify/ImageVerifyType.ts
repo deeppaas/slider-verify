@@ -24,7 +24,9 @@ interface BaseProps {
   onRefresh(): void
 }
 
-export interface ImageVerifyProps extends BaseProps {}
+export interface ImageVerifyProps extends BaseProps {
+  sliderTips?: string
+}
 
 export interface ImageVerifyHooksProps extends BaseProps {}
 

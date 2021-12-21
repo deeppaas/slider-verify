@@ -11,7 +11,7 @@ import useImageVerify from './useImageVerify'
 
 const CLASS_PREFIX = 'image-slider'
 
-const MOVE_CLASS = 'move'
+const MOVE_CLASS = `${CLASS_PREFIX}-result-message-move`
 
 export default function ImageVerify({
   width,
@@ -21,6 +21,7 @@ export default function ImageVerify({
   pointY,
   onMoveEnd,
   onRefresh,
+  sliderTips = '向右滑动滑块填充拼图',
 }: ImageVerifyProps) {
   const resultMessageRef = React.useRef<HTMLDivElement>(null)
   const {
@@ -44,13 +45,10 @@ export default function ImageVerify({
   })
 
   React.useEffect(() => {
-    if (verify.type === 'end') {
-      if (resultMessageRef.current) {
-        resultMessageRef.current.classList.add(
-          MOVE_CLASS,
-          verify.result === 'success' ? 'success' : 'error'
-        )
-      }
+    const resultMessageDom = resultMessageRef.current
+    // 校验结果出来之后 给弹框加动画
+    if (verify.type === 'end' && resultMessageDom) {
+      resultMessageDom.classList.add(MOVE_CLASS)
     }
   }, [verify.result, verify.type])
 
@@ -58,7 +56,7 @@ export default function ImageVerify({
     const resultMessageDom = resultMessageRef.current
     if (resultMessageDom) {
       resultMessageDom.onanimationend = () => {
-        resultMessageDom.classList.remove(MOVE_CLASS, 'sccess', 'error')
+        resultMessageDom.classList.remove(MOVE_CLASS)
         if (verify.type === 'end') {
           if (verify.result === 'error') {
             onRefresh()
@@ -97,7 +95,11 @@ export default function ImageVerify({
         </button>
         <div
           ref={resultMessageRef}
-          className={classnames(`${CLASS_PREFIX}-result-message`)}
+          className={classnames(`${CLASS_PREFIX}-result-message`, {
+            [`${CLASS_PREFIX}-result-message-success`]:
+              verify.result === 'success',
+            [`${CLASS_PREFIX}-result-message-error`]: verify.result === 'error',
+          })}
         >
           {verify.message}
         </div>
@@ -107,6 +109,7 @@ export default function ImageVerify({
           style={{ width: sliderBtnLeft }}
           className={`${CLASS_PREFIX}-line-active`}
         />
+        <div className={`${CLASS_PREFIX}-line-label`}>{sliderTips}</div>
         <button
           disabled={verify.type !== 'slider'}
           type="button"

@@ -24,9 +24,9 @@ function App() {
     console.log('move end', data)
     setTimeout(() => {
       if (Math.random() < 0.5) {
-        cb({ result: 'success', message: '校验成功' })
+        cb({ result: 'success', message: '你可真聪明呀！' })
       } else {
-        cb({ result: 'error', message: '校验失败' })
+        cb({ result: 'error', message: '再努力试一下？' })
       }
     }, 2000)
   }
