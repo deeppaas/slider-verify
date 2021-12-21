@@ -16,8 +16,11 @@ export default function ImageVerify({
   backgroundImage,
   sliderImage,
   pointY,
+  onMoveEnd,
+  onRefresh,
 }: ImageVerifyProps) {
   const {
+    verify,
     sliderStyle,
     sliderLeft,
     sliderBtnRef,
@@ -31,6 +34,8 @@ export default function ImageVerify({
     backgroundImage,
     sliderImage,
     pointY,
+    onMoveEnd,
+    onRefresh,
   })
 
   return (
@@ -51,17 +56,30 @@ export default function ImageVerify({
           src={backgroundImage}
           alt=""
         />
+        <button
+          onClick={onRefresh}
+          type="button"
+          className={`${CLASS_PREFIX}-refresh-btn`}
+        >
+          refresh
+        </button>
       </div>
       <div className={`${CLASS_PREFIX}-line`}>
         <div
+          style={{ width: sliderBtnLeft }}
+          className={`${CLASS_PREFIX}-line-active`}
+        />
+        <button
+          disabled={verify.type !== 'slider'}
+          type="button"
           style={{ left: sliderBtnLeft }}
           ref={sliderBtnRef}
           className={`${CLASS_PREFIX}-slider-btn`}
           onMouseDown={onMouseDown}
           onTouchStart={onTouchStart}
         >
-          {Icons.star()}
-        </div>
+          {verify.type === 'verifying' ? Icons.loading() : Icons.star()}
+        </button>
       </div>
     </div>
   )

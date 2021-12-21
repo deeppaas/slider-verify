@@ -28,6 +28,8 @@ module.exports = {
     'import/prefer-default-export': ['warn'],
     'react/jsx-props-no-spreading': 0,
     'jsx-a11y/no-static-element-interactions': 0,
+    'no-unused-vars': 'off',
+    'react/jsx-no-bind': 'off',
   },
   env: {
     browser: true,

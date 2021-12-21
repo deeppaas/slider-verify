@@ -18,12 +18,27 @@ $primary: #f7ca0c;
   position: absolute;
 }
 
+.#{$prefix}-refresh-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
 .#{$prefix}-line {
   position: relative;
   height: 24px;
-  background-color: rgba($primary, 0.7);
   margin-top: 10px;
   border-radius: 9999px;
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.#{$prefix}-line-active {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 9999px 0 0 9999px;
+  background-color: rgba($primary, 0.7);
 }
 
 .#{$prefix}-slider-btn {
@@ -40,4 +55,10 @@ $primary: #f7ca0c;
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
+  outline: none;
+  border: none;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 }

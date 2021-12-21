@@ -1,19 +1,45 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { ImageVerify } from '../src'
+import {
+  ImageVerifyMoveSuccessCallBackType,
+  ImageVerifyMoveType,
+} from '../src/ImageVerify/ImageVerifyType'
 
-const list = [
-  {
-    backgroundImage:
-      'https://cdn.linghemedia.com.cn/ihost/kxef/7buqnt5bkxefel12uro7kmt25fk.jpg',
-    sliderImage:
-      'https://cdn.linghemedia.com.cn/ihost/kxef/j5fhfuawkxeffw96nu3xx3ksu4.png',
-    pointY: 97,
-  },
-]
+import { list } from './constants'
 
 function App() {
-  return <ImageVerify {...list[0]} width={300} height={170} />
+  const [imageData, setImageData] = React.useState(
+    list[Math.floor(Math.random() * list.length)]
+  )
+
+  function onRefresh() {
+    setImageData(list[Math.floor(Math.random() * list.length)])
+  }
+
+  function onMoveEnd(
+    data: ImageVerifyMoveType,
+    cb: ImageVerifyMoveSuccessCallBackType
+  ) {
+    console.log('move end', data)
+    setTimeout(() => {
+      if (Math.random() < 0.5) {
+        cb({ result: 'success', message: '成功' })
+      } else {
+        cb({ result: 'error', message: '失败' })
+      }
+    }, 2000)
+  }
+
+  return (
+    <ImageVerify
+      {...imageData}
+      width={300}
+      height={169}
+      onMoveEnd={onMoveEnd}
+      onRefresh={onRefresh}
+    />
+  )
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))
